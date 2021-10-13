@@ -12,7 +12,20 @@ import Header from './Header.js';
 
 import './App.css'
 
+const TOKENKEY = 'TOKEN'
+
 export default class App extends Component {
+
+state = {
+  token: localStorage.getItem(TOKENKEY) || ''
+}
+
+handleTokenChange = token => {
+localStorage.setItem(TOKENKEY, token)
+this.setState({ token: token })
+}
+
+
     render() {
         return (
             <div>
@@ -32,7 +45,8 @@ export default class App extends Component {
                         <Route 
                             path="/sign-up" 
                             exact
-                            render={(routerProps) => <SignUpPage {...routerProps} />} 
+                            render={(routerProps) => <SignUpPage handleTokenChange = {this.handleTokenChange}
+                              {...routerProps} />} 
                         />
                         <Route 
                           path="/todos" 
