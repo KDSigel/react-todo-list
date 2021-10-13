@@ -31,7 +31,6 @@ logout = () => {
     this.setState({ token: '' })
 }
 
-
     render() {
         return (
             <div>
@@ -46,7 +45,8 @@ logout = () => {
                         <Route 
                             path='/login' 
                             exact
-                            render={(routerProps) => <LogInPage {...routerProps} />} 
+                            render={(routerProps) => <LogInPage handleTokenChange = {this.handleTokenChange}
+                            {...routerProps} />} 
                         />
                         <Route 
                             path='/sign-up' 
