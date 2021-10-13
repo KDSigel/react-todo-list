@@ -3,6 +3,7 @@ import {
     BrowserRouter as Router, 
     Route, 
     Switch,
+    Redirect
 } from 'react-router-dom';
 import HomePage from './HomePage.js';
 import LogInPage from './LogInPage.js';
@@ -33,25 +34,30 @@ this.setState({ token: token })
                   <Header />
                     <Switch>
                         <Route 
-                            path="/" 
+                            path='/' 
                             exact
                             render={(routerProps) => <HomePage {...routerProps} />} 
                         />
                         <Route 
-                            path="/login" 
+                            path='/login' 
                             exact
                             render={(routerProps) => <LogInPage {...routerProps} />} 
                         />
                         <Route 
-                            path="/sign-up" 
+                            path='/sign-up' 
                             exact
                             render={(routerProps) => <SignUpPage handleTokenChange = {this.handleTokenChange}
                               {...routerProps} />} 
                         />
                         <Route 
-                          path="/todos" 
+                          path='/todos' 
                           exact
-                          render={(routerProps) => <TodosPage {...routerProps} />} 
+                          render={
+                            (routerProps) => 
+                            this.state.token
+                            ? <TodosPage token={this.state.token} {...routerProps} />
+                            : <Redirect to='/login' />
+                        } 
                         />
                     </Switch>
                 </Router>
