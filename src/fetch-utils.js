@@ -19,7 +19,7 @@ export async function postTodo(todo, token) {
     const response = await request
     .post(`${URL}/api/todos`)
     .set({'Authorization': token})
-    .send(todo)
+    .send({todo})
     return response.body
 }
 

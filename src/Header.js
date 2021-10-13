@@ -10,7 +10,7 @@ export default class Header extends Component {
                 <NavLink exact activeClassName="active" to="/login">login</NavLink>
                 <NavLink exact activeClassName="active" to="/sign-up">sign up</NavLink>
                 <NavLink exact activeClassName="active" to="/todos">list</NavLink>
-                <button>Logout</button>
+                <button onClick={this.props.logout}>Logout</button>
             </div>
         )
     }

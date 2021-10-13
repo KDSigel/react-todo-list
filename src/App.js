@@ -22,8 +22,13 @@ state = {
 }
 
 handleTokenChange = token => {
-localStorage.setItem(TOKENKEY, token)
-this.setState({ token: token })
+    localStorage.setItem(TOKENKEY, token)
+    this.setState({ token: token })
+}
+
+logout = () => {
+    localStorage.clear()
+    this.setState({ token: '' })
 }
 
 
@@ -31,7 +36,7 @@ this.setState({ token: token })
         return (
             <div>
                 <Router>
-                  <Header />
+                  <Header logout={this.logout}/>
                     <Switch>
                         <Route 
                             path='/' 
